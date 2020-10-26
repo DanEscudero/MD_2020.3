@@ -83,8 +83,8 @@ if __name__ == "__main__":
     ys = data['c']
     covariance = xs.cov()
     
-    xis = list(map(lambda classValue: data[data['c'] == classValue][attributes], classes))
-    avgs, covars = getAvgs(xis), getCovars(xis)
+    xs = list(map(lambda classValue: data[data['c'] == classValue][attributes], classes))
+    avgs, covars = getAvgs(xs), getCovars(xs)
 
     # Fig 2
     fig, axs = plt.subplots(ncols=2)
