@@ -3,10 +3,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def makeCategorical(data, col):
-    data[col] = pd.Categorical(data[col])
-    data[col] = data[col].cat.codes
-
 def getLayout(cols):
     lines = 1
     return (lines, math.ceil(len(cols)/lines))
@@ -22,28 +18,18 @@ def plotCorrelation(data):
     sns.heatmap(correlationMatrix, annot=True, vmin=-1, vmax=1, cmap=sns.diverging_palette(220, 20, as_cmap=True))
     plt.xticks(rotation=30,fontsize=8)
 
-if __name__ == "__main__":
-    sns.set_theme()
-    data = pd.read_csv('../../DEF_NaoLigamosParaAG_FullData.csv', sep=",")
-
+def pandas_display_full_output():
     pd.set_option('display.max_rows', 500)
     pd.set_option('display.max_columns', 500)
     pd.set_option('display.width', 1000)
 
-    data['carro_foi_comprado'] = data.apply(lambda x: not math.isnan(x['valor_carro_comprado']),axis=1)
+if __name__ == "__main__":
+    sns.set_theme()
+    data = pd.read_csv('../../DEF_NaoLigamosParaAG_FullData.csv', sep=",")
 
-    # data['idade_negociante'] = pd.Categorical(data['idade_negociante'])
-    # makeCategorical(data, 'carro_foi_comprado')
-    # makeCategorical(data, 'periodo_visita')
-    # makeCategorical(data, 'sexo_negociante')
-    # makeCategorical(data, 'idade_negociante')
-    # makeCategorical(data, 'cor_cabelo_negociante')
-    # makeCategorical(data, 'gesticula_negociante')
-    # makeCategorical(data, 'vestimenta_negociante')
-    # makeCategorical(data, 'entrou_nos_carros')
-    # makeCategorical(data, 'tipo_primeiro_carro')
-    # makeCategorical(data, 'tipo_segundo_carro')
-    # makeCategorical(data, 'tipo_carro_comprado')
+    # pandas_display_full_output()
+
+    # data['carro_foi_comprado'] = data.apply(lambda x: not math.isnan(x['valor_carro_comprado']),axis=1)
 
     # cols = data.columns
     # cols = ['ano_primeiro_carro','ano_segundo_carro','ano_carro_comprado']
